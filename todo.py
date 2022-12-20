@@ -1,12 +1,13 @@
+#usr/bin/python3
 from tkinter import *
 from tkinter import ttk
 
 class todo:
-    def__init__(self, root):
+    def __init__(self, root):
         pass
 
     def main():
-        root = tk():
+        root = Tk()
         ui = todo(root)
         root.mainloop()
 
