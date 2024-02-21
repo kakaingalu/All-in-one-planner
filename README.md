@@ -13,12 +13,4 @@
  Allows users to integrate with `google calendar` and other `calendar options`.
 
 # User 
-
-# Collaborators
-1. Cecilia Ouko
-2. Anne Karye
-3. Erick Barasa
-4. George Wambani
-5. Myra Jarenga
-6. Ian Musima
-7. Joseph Kakai
+    

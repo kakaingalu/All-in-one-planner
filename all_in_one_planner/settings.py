@@ -48,6 +48,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'base.middleware.RestrictNormalToAdmin',
+    'admin_ip_restrictor.middleware.AdminIPRestrictorMiddleware',
 ]
 
 ROOT_URLCONF = 'all_in_one_planner.urls'
@@ -55,14 +58,14 @@ ROOT_URLCONF = 'all_in_one_planner.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates'],
+        'DIRS': [BASE_DIR / 'templates/base'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
+                'django.contrib.messages.context_processors.messages',   
             ],
         },
     },
@@ -116,6 +119,11 @@ USE_TZ = True
 
 LOGIN_URL = 'login'
 
+RESTRICT_ADMIN = True
+ALLOWED_ADMIN_IPS = ['197.157.80.101']
+ALLOWED_ADMIN_IP_RANGES = ['197.157.80.101']
+RESTRICTED_APP_NAMES = ['admin']
+TRUST_PRIVATE_IP = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/

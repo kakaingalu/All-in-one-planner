@@ -1,22 +1,22 @@
 {% extends 'base/main.html' %}
 {% block content %}
+<div class="login-form">
+    <div class="header-bar">
+        <div class="login-text">
+            <h1 class="login-text">Hello Again</h1>
+            
+            <p class="login-p">Welcome back you've been missed</p>
+        </div>
+    </div>
+    <hr>
+    <div class="card-body">
+        <form method="POST" >
+            {% csrf_token %}
+            {{form.as_p}}
+            <input class="button" type="submit" value="Login">
+        </form>
+        <p class="account-checker">Don't have an account? <a href="{% url 'register' %}">Register</a></p>
+    </div>
 
-<div class="header-bar">
-    <h1>Login</h1>
 </div>
-
-<div class="card-body">
-    <form method="POST">
-        {% csrf_token %}
-        {{form.as_p}}
-        <input class="button" type="submit" value="Login">
-    </form>
-    <p>Don't have an account? <a href="{% url 'register' %}">Register</a></p>
-</div>
-
-
-
-
-
-
 {% endblock content %}

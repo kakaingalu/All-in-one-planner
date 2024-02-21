@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,7 +8,7 @@
         content="This is to do list implemented using Django by Dennis Ivy who is a full stack web developer.">
 
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>To Do Items</title>
+    <title>AllInOnePlanner</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -16,9 +17,11 @@
 
     <style>
         body {
-            background-color: #FAFAFA;
+            background-color: rgb(51, 0, 50);
             font-family: 'Nunito', sans-serif;
-            padding-top: 50px;
+            padding: 10px;
+            overflow: hidden;
+            overscroll-behavior: contain;
         }
 
         h1,
@@ -33,19 +36,36 @@
 
         a,
         p {
-            color: #4b5156
+            color: #fff;
+        }
+
+        .account-checker p {
+            color: hsl(0,100%,27%) !important;
+        }
+
+        .account-checker {
+            font-weight: 600;
+            text-align: center;
         }
 
         a {
-            font-weight: 600;
+            font-weight: 800;
         }
 
         .container {
-            max-width: 550px;
-            margin: auto;
-            background-color: #fff;
+            max-width: 100%;
+            max-height: 100%;
+            height: 95vh;
+            margin: auto auto;
+            
+            background-color: hsl(0,100%,27%);
             -webkit-box-shadow: 2px 2px 13px -4px rgba(0, 0, 0, 0.21);
             box-shadow: 2px 2px 13px -4px rgba(0, 0, 0, 0.21);
+            background-image: url('https://images.unsplash.com/photo-1708086504310-134d8c4005f3?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            backdrop-filter: blur(50px);
         }
 
         input {
@@ -59,7 +79,9 @@
             color: #fff;
             padding: 10px;
             border-radius: 5px 5px 0 0;
-            background: linear-gradient(90deg, #EEA390 0%, #EB796F 43%, #EB796F 100%);
+            background-color: transparent; 
+            margin: auto auto;
+            backdrop-filter: blur(50px);
         }
 
         .header-bar a {
@@ -67,13 +89,54 @@
             text-decoration: none;
         }
 
+        .login-text {
+            padding: 10px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            margin-left: 0px;
+            text-align: center;
+        }
+
+        .list-text {
+            padding: 10px;
+            width: 60%;
+            display: flex;
+            flex-direction: column;
+            justify-content: end;
+            margin-left: 0px;
+            text-align: right;
+        }
+
+        .login-p {
+            font-weight: 600;
+            font-size: 20px;
+        }
+
+        .delete-p {
+            font-weight: 600;
+            font-size: 20px;
+            text-align: center;
+        }
+        .bold {
+            font-weight: 900;
+            font-size: 25px;
+            text-align: center;
+        }
+
+        .sign-up-p {
+            font-weight: 600;
+            font-size: 20px;
+        }
+
         .task-wrapper {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            background-color: #fff;
-            border-top: 1px solid #dfe4ea;
-            overflow: hidden;
+            margin-bottom: 3px;
+            background-color: transparent;
+            
         }
 
         .task-title {
@@ -83,7 +146,7 @@
 
         .task-title a {
             text-decoration: none;
-            color: #4b5156;
+            color: hsl(207,100%,37%);
             margin-left: 10px;
         }
 
@@ -154,6 +217,7 @@
             justify-content: space-between;
             align-items: center;
             padding: 20px;
+            
         }
 
         @media screen and (max-width:320px) {
@@ -166,7 +230,7 @@
         input[type=password],
         textarea {
             border: 1px solid #757575;
-            border-radius: 5px;
+            border-radius: 20px;
             padding: 10px;
             width: 90%;
         }
@@ -174,6 +238,8 @@
         label {
             padding-top: 10px !important;
             display: block;
+            color: hsl(207,100%,37%);
+            font-weight: 600;
         }
 
         ::placeholder {
@@ -183,18 +249,261 @@
 
         .button {
             border: 1px solid #757575;
-            background-color: #FFF;
-            color: #EB796F;
-            padding: 10px;
-            font-size: 14px;
+            background-color: hsl(207,100%,37%);
+            color: #fff;
+            padding: 8px;
+            font-size: 17px;
             border-radius: 5px;
             cursor: pointer;
             text-decoration: none;
+            margin: 20px auto;
+            width: 96%;
+            border-radius: 20px;
+            font-weight: 900;
         }
+
+        
 
         .card-body {
             padding: 20px;
         }
+
+        .login-form {
+            max-width: 50%;
+            max-height: 100%;
+            margin: auto auto;
+            color: #fff;
+            background-color: transparent;
+            -webkit-box-shadow: 2px 2px 13px -4px rgba(0, 0, 0, 0.21);
+            box-shadow: 2px 2px 13px -4px rgba(155, 153, 153, 0.21);
+            backdrop-filter: blur(50px);
+        }
+
+        .signup-form {
+            max-width: 50%;
+            max-height: 100%;
+            margin: 0 auto;
+            color: #fff;
+            background-color: transparent;
+            -webkit-box-shadow: 2px 2px 13px -4px rgba(0, 0, 0, 0.21);
+            box-shadow: 2px 2px 13px -4px rgba(155, 153, 153, 0.21);
+            backdrop-filter: blur(50px);
+        }
+
+        .Btn {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            width: 45px;
+            height: 45px;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition-duration: .3s;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.199);
+            background-color: hsl(207,100%,37%);
+            }
+
+            /* plus sign */
+            .sign {
+            width: 100%;
+            transition-duration: .3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            }
+
+            .sign svg {
+            width: 17px;
+            }
+
+            .sign svg path {
+            fill: white;
+            }
+            /* text */
+            .text {
+            position: absolute;
+            right: 0%;
+            width: 0%;
+            opacity: 0;
+            color: white;
+            font-size: 1.2em;
+            font-weight: 600;
+            transition-duration: .3s;
+            }
+            /* hover effect on button width */
+            .Btn:hover {
+            width: 125px;
+            border-radius: 40px;
+            transition-duration: .3s;
+            }
+
+            .Btn:hover .sign {
+            width: 30%;
+            transition-duration: .3s;
+            padding-left: 20px;
+            }
+            /* hover effect button's text */
+            .Btn:hover .text {
+            opacity: 1;
+            width: 70%;
+            transition-duration: .3s;
+            padding-right: 10px;
+            }
+            /* button click effect*/
+            .Btn:active {
+            transform: translate(2px ,2px);
+            }
+
+            
+
+            .search form{
+                margin: 0 auto;
+                display: block;
+            }
+
+            .btn {
+                position: relative;
+                width:  150px;
+                height:  40px;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                border:  1px solid hsl(207,100%,37%);
+                background-color: hsl(207,100%,37%);
+                }
+
+                .btn, .btn__icon, .btn__text {
+                transition: all  0.3s;
+                }
+
+                .btn .btn__text {
+                transform: translateX(30px);
+                color: #fff;
+                font-weight:  600;
+                }
+
+                .btn .btn__icon {
+                position: absolute;
+                transform: translateX(109px);
+                height:  100%;
+                width:  39px;
+                background-color: #fff;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                }
+
+                .btn .svg {
+                width:  30px;
+                stroke: hsl(301,100%,10%);
+                }
+
+                .btn:hover {
+                background: #fff;
+                }
+
+                .btn:hover .btn__text {
+                color: transparent;
+                }
+
+                .btn:hover .btn__icon {
+                width:  148px;
+                transform: translateX(0);
+                }
+
+                .btn:active .btn__icon {
+                background-color: #fff;
+                }
+
+                .btn:active {
+                border:  1px solid #fff;
+                }
+
+                .search-form {
+                    width: 40%;
+                    padding-left: 14%;
+                }
+
+
+                .task-controls .delete-link {
+                    color: #fff;
+                    font-size: 35px; 
+                }
+                
+                .task-controls .handle {
+                    color: #fff;
+                    font-size: 20px; 
+                }
+
+                #tasklist.task-items-wrapper {
+                    max-height:  325px; /* or any other value that suits your design */
+                    overflow-y: auto;
+                }
+
+                .bttn {
+                    width:  50px;
+                    height:  50px;
+                    border-radius:  50%;
+                    background-color: hsl(207,100%,37%);
+                    border: none;
+                    font-weight:  600;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    box-shadow:  0px  0px  0px  4px hsl(207,100%,37%);
+                    cursor: pointer;
+                    transition-duration:  0.3s;
+                    overflow: hidden;
+                    position: relative;
+                    }
+
+                    .bttn .svgIcon {
+                    width:  12px;
+                    transition-duration:  0.3s;
+                    }
+
+                    .bttn .svgIcon path {
+                    fill: white;
+                    }
+
+                    .bttn:hover {
+                    width:  140px;
+                    border-radius:  50px;
+                    transition-duration:  0.3s;
+                    background-color: hsl(207,100%,37%);
+                    align-items: center;
+                    }
+
+                    .bttn:hover .svgIcon {
+                    transition-duration:  0.3s;
+                    transform: translateY(-200%);
+                    }
+
+                    .bttn::before {
+                    position: absolute;
+                    bottom: -20px;
+                    content: "Back";
+                    color: white;
+                    font-size:  0px;
+                    }
+
+                    .bttn:hover::before {
+                    font-size:  13px;
+                    opacity:  1;
+                    bottom: unset;
+                    transition-duration:  0.3s;
+                    }
+
+                    .rotate-left {
+                    transform: rotate(270deg);
+                    }
+
+
+
+
     </style>
 </head>
 
