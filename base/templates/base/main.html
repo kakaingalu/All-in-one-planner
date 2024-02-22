@@ -8,7 +8,7 @@
         content="This is to do list implemented using Django by Dennis Ivy who is a full stack web developer.">
 
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>AllInOnePlanner</title>
+    <title>Planna</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -57,15 +57,22 @@
             max-height: 100%;
             height: 95vh;
             margin: auto auto;
-            
-            background-color: hsl(0,100%,27%);
+            /* background-color: hsl(0,100%,27%); */
             -webkit-box-shadow: 2px 2px 13px -4px rgba(0, 0, 0, 0.21);
             box-shadow: 2px 2px 13px -4px rgba(0, 0, 0, 0.21);
             background-image: url('https://images.unsplash.com/photo-1708086504310-134d8c4005f3?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
             background-size: cover;
             background-repeat: no-repeat;
-            background-position: center;
-            backdrop-filter: blur(50px);
+            background-position: center; 
+            /* background-color: rgba(0,  0,  0,  0.5); */
+        }
+
+        .glass {
+            background-color: rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            padding: 0px;
+            margin: 0px;
         }
 
         input {
@@ -136,7 +143,6 @@
             justify-content: space-between;
             margin-bottom: 3px;
             background-color: transparent;
-            
         }
 
         .task-title {
@@ -146,8 +152,14 @@
 
         .task-title a {
             text-decoration: none;
-            color: hsl(207,100%,37%);
-            margin-left: 10px;
+            color: #fff;         
+        }
+
+        .description {
+            text-decoration: none;
+            color: #fff;
+            margin-left: 220px;
+            font-weight: 900;
         }
 
         .task-complete-icon {
@@ -171,6 +183,7 @@
             font-size: 22px;
             line-height: 0;
             padding: 20px 0px;
+            margin-right: 300px;
         }
 
         /*Handle Classes*/
@@ -501,8 +514,49 @@
                     transform: rotate(270deg);
                     }
 
+                    .controls {
+                        float: right;
+                        margin-right:10px;
+                        color: #fff;
+                        font-weight: 900; 
+                    }
+                    .width {
+                        max-width: 200px;
+                        margin-left: 10px;
+                        width: 200px;
+                        text-align: center;
+                    }
 
+                    .width-title {
+                        max-width: 200px;
+                        margin-left: 10px;
+                        width: 200px;
+                    }
 
+                    .status {
+                        margin-left: 10px;
+                        color: #fff;
+                        font-weight: 900;
+                    }
+
+                    .title {
+                        margin-left: 10px;
+                        color: #fff;
+                        font-weight: 900;
+                    }
+                    
+                    .delete {
+                        color: #fff;
+                        font-weight: 900;
+                        margin-left: 180px;
+                    }
+
+                    .reorder {
+                        float: right;
+                        color: #fff;
+                        font-weight: 900;
+                        margin-right: 10px;
+                    }
 
     </style>
 </head>

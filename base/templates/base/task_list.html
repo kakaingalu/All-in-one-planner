@@ -1,105 +1,120 @@
 {% extends 'base/main.html' %} {% block content %}
 
-<script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
-<div class="header-bar">
-    <div class="list-text">
-        <h1>Hello {{request.user|title}}   &nbsp;</h1>
-        <h3 style="margin:0">You have <i>{{count}}</i> incomplete task{{ count|pluralize:"s" }}</h3>
+<div class="glass">
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
+    <div class="header-bar">
+        <div class="list-text">
+            <h1>Hello {{request.user|title}}   &nbsp;</h1>
+            <h3 style="margin:0">You have <i>{{count}}</i> incomplete task{{ count|pluralize:"s" }}</h3>
+        </div>
+
+        {% if request.user.is_authenticated %}
+        <a href="{% url 'logout' %}" class="Btn">
+            <div class="sign">
+            <svg viewBox="0  0  512  512">
+                <path d="M217.9  105.9L340.7  228.7c7.2  7.2  11.3  17.1  11.3  27.3s-4.1  20.1-11.3  27.3L217.9  406.1c-6.4  6.4-15  9.9-24  9.9c-18.7  0-33.9-15.2-33.9-33.9l0-62.1L32  320c-17.7  0-32-14.3-32-32l0-64c0-17.7  14.3-32  32-32l128  0  0-62.1c0-18.7  15.2-33.9  33.9-33.9c9  0  17.6  3.6  24  9.9zM352  416l64  0c17.7  0  32-14.3  32-32l0-256c0-17.7-14.3-32-32-32l-64  0c-17.7  0-32-14.3-32-32s14.3-32  32-32l64  0c53  0  96  43  96  96l0  256c0  53-43  96-96  96l-64  0c-17.7  0-32-14.3-32-32s14.3-32  32-32z"></path>
+            </svg>
+            </div>
+            <div class="text">&nbsp; &nbsp; &nbsp;Logout</div>
+        </a>
+        {% else %}
+        <a href="{% url 'login' %}">Login</a> {% endif %}
     </div>
 
-    {% if request.user.is_authenticated %}
-    <a href="{% url 'logout' %}" class="Btn">
-        <div class="sign">
-          <svg viewBox="0  0  512  512">
-            <path d="M217.9  105.9L340.7  228.7c7.2  7.2  11.3  17.1  11.3  27.3s-4.1  20.1-11.3  27.3L217.9  406.1c-6.4  6.4-15  9.9-24  9.9c-18.7  0-33.9-15.2-33.9-33.9l0-62.1L32  320c-17.7  0-32-14.3-32-32l0-64c0-17.7  14.3-32  32-32l128  0  0-62.1c0-18.7  15.2-33.9  33.9-33.9c9  0  17.6  3.6  24  9.9zM352  416l64  0c17.7  0  32-14.3  32-32l0-256c0-17.7-14.3-32-32-32l-64  0c-17.7  0-32-14.3-32-32s14.3-32  32-32l64  0c53  0  96  43  96  96l0  256c0  53-43  96-96  96l-64  0c-17.7  0-32-14.3-32-32s14.3-32  32-32z"></path>
-          </svg>
-        </div>
-        <div class="text">&nbsp; &nbsp; &nbsp;Logout</div>
-      </a>
-    {% else %}
-    <a href="{% url 'login' %}">Login</a> {% endif %}
-</div>
-
-{% if tasks|length >  0 %}
-<div id="search-add-wrapper" class="search">
-    <form method="GET" class="search-form">
-        <input type='text' name='search-area' placeholder="Search your task" value="{{search_input}}">
-        <input class="button" type="submit" value='Search'>
-    </form>
-    {% if tasks|length > 0 %}
-    <a type="button" class="btn" href="{% url 'task-create' %}">
-        <span class="btn__text">Add Task</span>
-        <span class="btn__icon">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" viewBox="0   0   24   24" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" stroke="currentColor" height="24" fill="none" class="svg">
-            <line y2="19" y1="5" x2="12" x1="12"></line>
-            <line y2="12" y1="12" x2="19" x1="5"></line>
-          </svg>
-        </span>
-      </a>
+    {% if tasks|length >  0 %}
+    <div id="search-add-wrapper" class="search">
+        <form method="GET" class="search-form">
+            <input type='text' name='search-area' placeholder="Search your task" value="{{search_input}}">
+            <input class="button" type="submit" value='Search'>
+        </form>
+        {% if tasks|length > 0 %}
+        <a type="button" class="btn" href="{% url 'task-create' %}">
+            <span class="btn__text">Add Task</span>
+            <span class="btn__icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" viewBox="0   0   24   24" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" stroke="currentColor" height="24" fill="none" class="svg">
+                <line y2="19" y1="5" x2="12" x1="12"></line>
+                <line y2="12" y1="12" x2="19" x1="5"></line>
+            </svg>
+            </span>
+        </a>
+        {% endif %}
+    </div>
     {% endif %}
-</div>
-{% endif %}
 
 
-<!-- Hidden form. Form submits new item positions -->
-<form style="display: none;" id="reorderForm" method="post" action="{% url 'task-reorder' %}">
-    {% csrf_token %}
-    <input type="hidden" id="positionInput" name="position">
-</form>
+    <!-- Hidden form. Form submits new item positions -->
+    <form style="display: none;" id="reorderForm" method="post" action="{% url 'task-reorder' %}">
+        {% csrf_token %}
+        <input type="hidden" id="positionInput" name="position">
+    </form>
 
 
-<div id="tasklist" class="task-items-wrapper">
-    <hr>
-    {% for task in tasks %}
-    <div class="task-wrapper" data-position="{{task.pk}}">
-        <div class="task-title">
-            {% if task.complete %}
-            <div class="task-complete-icon"></div>
-            <i><s><a href="{% url 'task-update' task.id %}">{{task}}</a></s></i> {% else %}
-            <div class="task-incomplete-icon"></div>
-            <a href="{% url 'task-update' task.id %}">{{task}}</a> {% endif %}
-        </div>
-        <div class="task-controls">
-            <a class="delete-link" href="{% url 'task-delete' task.id %}">&#215;</a>
-            <span class="handle">&nbsp;&#10247;</span>
-        </div>
+
+    <div class="header">
+        <span class="status">Status </span>
+        
+        <span class="title">Title </span>
+        <span class="description">Description</span>
+        <span class="delete">Delete</span>
+        <span class="reorder">Reorder</span>
     </div>
     <hr>
-    {% empty %}
-    <div style="text-align: center; padding-bottom: 10px; line-height: 1em; color: #fff;">
-        <div></div>
-        <h3>No new tasks are created.</h3>
-        <h3>Create a <a style="text-decoration: none; color: hsl(207,100%,37%);" href="{% url 'task-create' %}">New task</a> ! </h3>
-        <div></div>
+    <div id="tasklist" class="task-items-wrapper">
+   
+        
+        {% for task in tasks %}
+        <div class="task-wrapper" data-position="{{task.pk}}">
+            <div class="task-title">
+                {% if task.complete %}
+                <div class="task-complete-icon"></div>
+                <div class="width-title"><i><s><a href="{% url 'task-update' task.id %}">{{task}}</a></s></i></div>
+                <div class="width"><a href="{% url 'task-update' task.id %}">{{task.description}}</a></div> {% else %}
+                <div class="task-incomplete-icon"></div>
+                <div class="width-title"><a href="{% url 'task-update' task.id %}">{{task}}</a></div>
+                <div class="width"><a href="{% url 'task-update' task.id %}">{{task.description}}</a></div> {% endif %}
+            </div>
+            <div class="task-controls">
+                <a class="delete-link" href="{% url 'task-delete' task.id %}">&#215;</a>
+                <span class="handle">&nbsp;&#10247;</span>
+            </div>
+        </div>
+        <hr>
+        {% empty %}
+        <div style="text-align: center; padding-bottom: 10px; line-height: 1em; color: #fff;">
+            <div></div>
+            <h3>No new tasks are created.</h3>
+            <h3>Create a <a style="text-decoration: none; color: hsl(207,100%,37%);" href="{% url 'task-create' %}">New task</a> ! </h3>
+            <div></div>
+        </div>
+        <hr>
+        {% endfor %}
     </div>
-    <hr>
-    {% endfor %}
-</div>
 
-<script>
-    var taskList = document.getElementById("tasklist");
-    var reorderForm = document.getElementById("reorderForm");
-    var positionInput = document.getElementById("positionInput");
+    <script>
+        var taskList = document.getElementById("tasklist");
+        var reorderForm = document.getElementById("reorderForm");
+        var positionInput = document.getElementById("positionInput");
 
-    let sortable = Sortable.create(taskList, {
-        handle: '.handle',
-        ghostClass: 'dropArea',
-        chosenClass: 'selectedTask',
+        let sortable = Sortable.create(taskList, {
+            handle: '.handle',
+            ghostClass: 'dropArea',
+            chosenClass: 'selectedTask',
 
-    });
+        });
 
-    function reordering() {
-        const rows = document.getElementsByClassName("task-wrapper");
-        let pos = [];
-        for (let row of rows) {
-            pos.push(row.dataset.position);
+        function reordering() {
+            const rows = document.getElementsByClassName("task-wrapper");
+            let pos = [];
+            for (let row of rows) {
+                pos.push(row.dataset.position);
+            }
+            console.log(pos.join(","))
+            positionInput.value = pos.join(',');
+            reorderForm.submit();
         }
-        console.log(pos.join(","))
-        positionInput.value = pos.join(',');
-        reorderForm.submit();
-    }
 
-    document.ondrop = reordering
-</script>
+        document.ondrop = reordering
+    </script>
+</div>
 
 {% endblock content %}
