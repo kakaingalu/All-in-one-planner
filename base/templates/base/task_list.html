@@ -24,8 +24,8 @@
     {% if tasks|length >  0 %}
     <div id="search-add-wrapper" class="search">
         <form method="GET" class="search-form">
-            <input type='text' name='search-area' placeholder="Search your task" value="{{search_input}}">
-            <input class="button" type="submit" value='Search'>
+            <input type='text' class="input" name='search-area' placeholder="Search your task" value="{{search_input}}">
+            <input class="button search-button" type="submit" value='Search'>
         </form>
         {% if tasks|length > 0 %}
         <a type="button" class="btn" href="{% url 'task-create' %}">
@@ -49,18 +49,17 @@
     </form>
 
 
-
-    <div class="header">
-        <span class="status">Status </span>
-        
-        <span class="title">Title </span>
-        <span class="description">Description</span>
-        <span class="delete">Delete</span>
-        <span class="reorder">Reorder</span>
-    </div>
+<div class="header">
+            <span class="status">Status </span>
+            
+            <span class="title">Title </span>
+            <span class="description">Description</span>
+            <span class="delete">Delete</span>
+            <span class="reorder">Reorder</span>
+        </div>
+    
     <hr>
     <div id="tasklist" class="task-items-wrapper">
-   
         
         {% for task in tasks %}
         <div class="task-wrapper" data-position="{{task.pk}}">
@@ -78,6 +77,7 @@
                 <span class="handle">&nbsp;&#10247;</span>
             </div>
         </div>
+
         <hr>
         {% empty %}
         <div style="text-align: center; padding-bottom: 10px; line-height: 1em; color: #fff;">
