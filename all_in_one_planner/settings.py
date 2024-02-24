@@ -25,8 +25,7 @@ SECRET_KEY = 'q)(wa69nhiu@@4rd8x5x&r12))27berqhmitnnlw820^y2@ay1'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['0.0.0.0']
-PORT =  10000
+ALLOWED_HOSTS = ['all-in-one-planner.onrender.com']
 
 
 
@@ -124,10 +123,10 @@ USE_TZ = True
 LOGIN_URL = 'login'
 
 RESTRICT_ADMIN = True
-ALLOWED_ADMIN_IPS = ['197.157.80.101']
-ALLOWED_ADMIN_IP_RANGES = ['197.157.80.101']
-RESTRICTED_APP_NAMES = ['admin']
-TRUST_PRIVATE_IP = True
+# ALLOWED_ADMIN_IPS = ['197.157.80.101']
+# ALLOWED_ADMIN_IP_RANGES = ['197.157.80.101']
+# RESTRICTED_APP_NAMES = ['admin']
+# TRUST_PRIVATE_IP = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
