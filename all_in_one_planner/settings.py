@@ -134,6 +134,8 @@ TRUST_PRIVATE_IP = True
 
 STATIC_URL = '/static/'
 
+# CORS
+
 CORS_ALLOW_CREDENTIALS = True
 
 
@@ -146,3 +148,6 @@ CORS_ALLOW_HEADERS = (
     "x-requested-with",
 )
 
+STATIC_ROOT = BASE_DIR / 'static'
+
+CORS_ORIGIN_ALLOW_ALL = True
