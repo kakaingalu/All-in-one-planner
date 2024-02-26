@@ -25,7 +25,13 @@ SECRET_KEY = 'q)(wa69nhiu@@4rd8x5x&r12))27berqhmitnnlw820^y2@ay1'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['all-in-one-planner-1.onrender.com/']
+ALLOWED_HOSTS = [
+    '0.0.0.0', 
+    'localhost', 
+    'kochela.pythonanywhere.com', 
+    'all-in-one-planner-1.onrender.com', 
+    'all-in-one-planner.onrender.com']
+
 
 
 
