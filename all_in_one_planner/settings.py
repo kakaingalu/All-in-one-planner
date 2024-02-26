@@ -30,7 +30,6 @@ ALLOWED_HOSTS = [
     'localhost', 
     'kochela.pythonanywhere.com', 
     'all-in-one-planner-1.onrender.com', 
-    'all-in-one-planner.onrender.com',
     'panna.onrender.com']
 
 
