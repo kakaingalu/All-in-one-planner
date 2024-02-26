@@ -129,10 +129,10 @@ USE_TZ = True
 LOGIN_URL = 'login'
 
 RESTRICT_ADMIN = True
-# ALLOWED_ADMIN_IPS = ['197.157.80.101']
-# ALLOWED_ADMIN_IP_RANGES = ['197.157.80.101']
-# RESTRICTED_APP_NAMES = ['admin']
-# TRUST_PRIVATE_IP = True
+ALLOWED_ADMIN_IPS = ['154.16.0.33']
+ALLOWED_ADMIN_IP_RANGES = ['154.16.0.33']
+RESTRICTED_APP_NAMES = ['admin']
+TRUST_PRIVATE_IP = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
