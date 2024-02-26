@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -25,12 +26,14 @@ SECRET_KEY = 'q)(wa69nhiu@@4rd8x5x&r12))27berqhmitnnlw820^y2@ay1'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = [
-    '0.0.0.0', 
-    'localhost', 
-    'kochela.pythonanywhere.com', 
-    'all-in-one-planner-1.onrender.com', 
-    'panna.onrender.com']
+# ALLOWED_HOSTS = [
+#     '0.0.0.0', 
+#     'localhost', 
+#     'kochela.pythonanywhere.com', 
+#     'all-in-one-planner-1.onrender.com', 
+#     'panna.onrender.com']
+
+ALLOWED_HOSTS = ['*']
 
 
 
@@ -153,6 +156,7 @@ CORS_ALLOW_HEADERS = (
     "x-requested-with",
 )
 
-STATIC_ROOT = BASE_DIR / 'static'
+# STATIC_ROOT = BASE_DIR / 'static'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 CORS_ORIGIN_ALLOW_ALL = True
